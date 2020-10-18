@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   },
   errorMessage: {
     position: "absolute",
-    top: "253px",
+    top: "269px",
     [theme.breakpoints.down("xs")]: {
       top: "-39px",
     },

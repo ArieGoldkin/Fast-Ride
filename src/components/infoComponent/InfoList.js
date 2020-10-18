@@ -13,6 +13,9 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
+    [theme.breakpoints.down("xs")]: {
+      padding: 0,
+    },
   },
   wrapper: {
     flexGrow: 1,
@@ -20,22 +23,24 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1.5rem",
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     textAlign: "center",
     color: "inherit",
     backgroundColor: "inherit",
     [theme.breakpoints.down("xs")]: {
-      padding: "16px 69px",
+      padding: "0.6rem 1rem",
     },
   },
   responsiveGrid: {
+    paddingBottom: "1rem",
     [theme.breakpoints.down("xs")]: {
       flexDirection: "column",
+      paddingBottom: "0.7rem",
     },
   },
   responsiveGridItem: {
     [theme.breakpoints.down("xs")]: {
-      padding: "8px",
+      padding: 0,
     },
   },
 }));
@@ -47,36 +52,24 @@ const clockText =
   "When the time comes, use the special FastRider line to cut out a considerable wait time";
 
 const InfoList = () => {
-  const isActive = useMediaQuery("(min-width:600px)");
+  // const isActive = useMediaQuery("(min-width:600px)");
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
-        <Grid container spacing={7} className={classes.responsiveGrid}>
-          <Grid
-            item={isActive ? true : false}
-            xs
-            className={classes.responsiveGridItem}
-          >
+        <Grid container className={classes.responsiveGrid}>
+          <Grid item xs className={classes.responsiveGridItem}>
             <Paper elevation={0} className={classes.paper}>
               <InfoItem image={ticket} text={ticketText} />
             </Paper>
           </Grid>
-          <Grid
-            item={isActive ? true : false}
-            xs
-            className={classes.responsiveGridItem}
-          >
+          <Grid item xs className={classes.responsiveGridItem}>
             <Paper elevation={0} className={classes.paper}>
               <InfoItem image={arrow} text={arrowText} />
             </Paper>
           </Grid>
-          <Grid
-            item={isActive ? true : false}
-            xs
-            className={classes.responsiveGridItem}
-          >
+          <Grid item xs className={classes.responsiveGridItem}>
             <Paper elevation={0} className={classes.paper}>
               <InfoItem image={clock} text={clockText} />
             </Paper>
