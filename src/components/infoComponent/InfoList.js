@@ -8,7 +8,6 @@ import Grid from "@material-ui/core/Grid";
 import ticket from "../../images/ticket-1.png";
 import arrow from "../../images/arrow-1.png";
 import clock from "../../images/clock-1.png";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +51,6 @@ const clockText =
   "When the time comes, use the special FastRider line to cut out a considerable wait time";
 
 const InfoList = () => {
-  // const isActive = useMediaQuery("(min-width:600px)");
   const classes = useStyles();
 
   return (

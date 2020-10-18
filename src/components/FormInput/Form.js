@@ -10,6 +10,8 @@ import SubmitButton from "./SubmitButton";
 import { useForm } from "../hooks/form-hook";
 import { VALIDATOR_PIN_CODE } from "../hooks/InputValidators";
 
+import { convertToTime, getMinutes } from "../helpers/convertTime";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -18,7 +20,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Form = ({ selectedRide, onSubmitRide, token, setErrorMessage }) => {
+const Form = ({
+  selectedRide,
+  onSubmitRide,
+  token,
+  setErrorMessage,
+  items,
+}) => {
   const classes = useStyles();
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -30,6 +38,19 @@ const Form = ({ selectedRide, onSubmitRide, token, setErrorMessage }) => {
     false
   );
 
+  const checkRideTime = (rideId) => {
+    let item = items.find((item) => item.id === rideId);
+    let rideTime = convertToTime(item.return_time);
+    const ride = getMinutes(rideTime);
+    let start = getMinutes("19:00");
+    let end = getMinutes("9:00");
+    if (start > end) end += getMinutes("24:00");
+    if (ride > start && ride < end) {
+      return false;
+    }
+    return true;
+  };
+
   const onSubmitPinNumber = (event) => {
     event.preventDefault();
     setFormData(
@@ -38,19 +59,27 @@ const Form = ({ selectedRide, onSubmitRide, token, setErrorMessage }) => {
       },
       false
     );
+
     const pinNumber = formState.inputs.pinNumber.value;
-    console.log(formState.inputs.pinNumber.value);
-    if (checkPinNumber(pinNumber)) {
-      if (selectedRide.length === 0) {
-        setErrorMessage({
-          error: "Please choose a ride before ordering a ticket",
-        });
-      } else {
-        const rideId = selectedRide;
-        onSubmitRide({ token, pinNumber, rideId });
-      }
+    let canRideTime = checkRideTime(selectedRide);
+
+    if (!canRideTime) {
+      setErrorMessage({
+        error: "Sorry the park is closed come back at 9:00.",
+      });
     } else {
-      setErrorMessage({ error: "Pin Code is not Valid, Try again" });
+      if (checkPinNumber(pinNumber)) {
+        if (selectedRide.length === 0) {
+          setErrorMessage({
+            error: "Please choose a ride before ordering a ticket",
+          });
+        } else {
+          const rideId = selectedRide;
+          onSubmitRide({ token, pinNumber, rideId });
+        }
+      } else {
+        setErrorMessage({ error: "Pin Code is not Valid, Try again" });
+      }
     }
   };
 
@@ -71,6 +100,7 @@ const Form = ({ selectedRide, onSubmitRide, token, setErrorMessage }) => {
 
 const mapStateToProps = (state) => {
   return {
+    items: state.fastRiderData.items,
     selectedRide: state.userSelectItem.item,
     token: state.userSelectItem.userToken,
   };

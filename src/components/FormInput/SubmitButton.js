@@ -45,7 +45,7 @@ const SubmitButton = () => {
       if (prevScrollY.current < currentScrollY && !scrollDown) {
         setScrollDown(true);
       }
-      if (currentScrollY === 0 && scrollDown) {
+      if (currentScrollY < 400) {
         setScrollDown(false);
       }
       prevScrollY.current = currentScrollY;
