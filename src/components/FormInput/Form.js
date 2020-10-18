@@ -22,13 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Form = ({
-  selectedRide,
-  onSubmitRide,
-  token,
-  setErrorMessage,
-  items,
-}) => {
+const Form = ({ selectedRide, onSubmitRide, token, setErrorMessage }) => {
   const classes = useStyles();
   const [formState, inputHandler, setFormData] = useForm(
     {
