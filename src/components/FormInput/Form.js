@@ -12,7 +12,7 @@ import SubmitButton from "./SubmitButton";
 import { useForm } from "../hooks/form-hook";
 import { VALIDATOR_PIN_CODE } from "../hooks/InputValidators";
 
-import { convertToTime, getMinutes } from "../helpers/convertTime";
+import { checkRideTime } from "../helpers/convertTime";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,19 +40,6 @@ const Form = ({
     false
   );
 
-  const checkRideTime = (rideId) => {
-    let item = items.find((item) => item.id === rideId);
-    let rideTime = convertToTime(item.return_time);
-    const ride = getMinutes(rideTime);
-    let start = getMinutes("19:00");
-    let end = getMinutes("9:00");
-    if (start > end) end += getMinutes("24:00");
-    if (ride > start && ride < end) {
-      return false;
-    }
-    return true;
-  };
-
   const onSubmitPinNumber = (event) => {
     event.preventDefault();
     setFormData(
@@ -63,7 +50,8 @@ const Form = ({
     );
 
     const pinNumber = formState.inputs.pinNumber.value;
-    let canRideTime = checkRideTime(selectedRide);
+    let canRideTime = checkRideTime();
+    console.log(canRideTime);
 
     if (!canRideTime) {
       setErrorMessage({
