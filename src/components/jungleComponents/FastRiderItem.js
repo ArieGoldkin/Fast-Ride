@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import * as actions from "./actions/FastRiderActions";
+import { getSelectedItem } from "../userComponents/userSelectors";
 import { convertToTime } from "../helpers/convertTime";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -91,7 +92,7 @@ const FastRiderItem = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    selectedItem: state.userSelectItem.item,
+    selectedItem: getSelectedItem(state),
   };
 };
 

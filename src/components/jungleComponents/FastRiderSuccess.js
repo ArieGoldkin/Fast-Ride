@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { Redirect } from "react-router-dom";
 import * as actions from "./actions/FastRiderActions";
+import { getResultData } from "./selectors/FastRiderSelectors";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -71,7 +72,7 @@ const FastRiderSuccess = ({ result, setSuccessToFalse }) => {
 
 const mapStateToProps = (state) => {
   return {
-    result: state.fastRideDataResult.item,
+    result: getResultData(state),
   };
 };
 const mapDispatchToProps = (dispatch) => {

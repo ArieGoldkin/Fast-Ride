@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 
 import * as actions from "../jungleComponents/actions/FastRiderActions";
+import { selectData } from "../jungleComponents/selectors/FastRiderSelectors";
+import { getSelectedItem, GetToken } from "../userComponents/userSelectors";
 import { checkPinNumber } from "../helpers/CheckPinCodeValidation";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -100,9 +102,9 @@ const Form = ({
 
 const mapStateToProps = (state) => {
   return {
-    items: state.fastRiderData.items,
-    selectedRide: state.userSelectItem.item,
-    token: state.userSelectItem.userToken,
+    items: selectData(state),
+    selectedRide: getSelectedItem(state),
+    token: GetToken(state),
   };
 };
 
