@@ -45,7 +45,6 @@ const Form = ({ selectedRide, onSubmitRide, token, setErrorMessage }) => {
 
     const pinNumber = formState.inputs.pinNumber.value;
     let canRideTime = checkRideTime();
-    console.log(canRideTime);
 
     if (!canRideTime) {
       setErrorMessage({
