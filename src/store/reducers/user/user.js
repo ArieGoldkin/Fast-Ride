@@ -1,5 +1,5 @@
-import { Types } from "../jungleComponents/actions/FastRiderActions";
-import { updateObject } from "../store/utility";
+import * as actionTypes from "../../actions/actionTypes";
+import { updateObject } from "../../utility";
 
 const initialState = {
   item: [],
@@ -32,11 +32,11 @@ const setSelectedItemFailure = (state, action) => {
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
-    case Types.SET_SELECTED_RIDE_REQUEST:
+    case actionTypes.SET_SELECTED_RIDE_REQUEST:
       return setSelectedItemRequest(state, action);
-    case Types.SET_SELECTED_RIDE_SUCCESS:
+    case actionTypes.SET_SELECTED_RIDE_SUCCESS:
       return setSelectedItemSuccess(state, action);
-    case Types.SET_SELECTED_RIDE_FAILURE:
+    case actionTypes.SET_SELECTED_RIDE_FAILURE:
       return setSelectedItemFailure(state, action);
     default:
       return state;

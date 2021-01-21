@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import InfoList from "./infoComponent/InfoList";
-import FastRider from "./jungleComponents";
-import Form from "./FormInput/Form";
-import ErrorModal from "./helpers/ErrorModal";
+import { getSuccessResult, getFastRideError } from "../store/selectors";
+import InfoList from "../components/InfoSection/InfoList";
+import FastRider from "./FastRider/FastRider";
+import Form from "./submitFormFastRide/Form";
+import ErrorModal from "../helpers/ErrorModal";
 
 const Main = ({ success, error }) => {
   const [errorMessage, setErrorMessage] = useState();
@@ -46,8 +47,8 @@ const Main = ({ success, error }) => {
 
 const mapStateToProps = (state) => {
   return {
-    success: state.fastRideDataResult.success,
-    error: state.fastRideDataResult.error,
+    success: getSuccessResult(state),
+    error: getFastRideError(state),
   };
 };
 

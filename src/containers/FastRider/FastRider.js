@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import { getFastRiderDataRequest } from "./actions/FastRiderActions";
-import { GetToken } from "../userComponents/userSelectors";
+import { getFastRiderDataRequest } from "../../store/actions";
 import {
+  GetToken,
   selectRiderDataLoading,
   selectData,
-} from "./selectors/FastRiderSelectors";
+} from "../../store/selectors";
 
-import FastRiderList from "./components/FastRiderList";
+import FastRiderList from "../../components/FastRider/FastRiderList";
 
 const FastRider = ({ getData, items, loading, token }) => {
   useEffect(() => {

@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
-import * as actions from "../actions/FastRiderActions";
-import { getSelectedItem } from "../../userComponents/userSelectors";
+import * as actions from "../../store/actions";
+import { getSelectedItem } from "../../store/selectors";
 import { convertToTime } from "../../helpers/convertTime";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Paper from "@material-ui/core/Paper";
-import clock2 from "../../../images/clock-2.png";
-import ticket2 from "../../../images/ticket-2.png";
+import clock2 from "../../images/clock-2.png";
+import ticket2 from "../../images/ticket-2.png";
 
 const useStyles = makeStyles((theme) => ({
   zoneColorDiv: {

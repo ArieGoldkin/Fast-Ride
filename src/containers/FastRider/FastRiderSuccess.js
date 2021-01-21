@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import { Redirect } from "react-router-dom";
-import * as actions from "../actions/FastRiderActions";
-import { getResultData } from "../selectors/FastRiderSelectors";
+import { changeSuccess } from "../../store/actions";
+import { getResultData } from "../../store/selectors";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import InfoItem from "../../infoComponent/InfoItem";
-import FastRiderSuccessItem from "./FastRiderSuccessItem";
-import vIcon from "../../../images/ico-04.png";
+import InfoItem from "../../components/InfoSection/InfoItem";
+import FastRiderSuccessItem from "../../components/FastRider/FastRiderSuccessItem";
+import vIcon from "../../images/ico-04.png";
 
 const useStyles = makeStyles((theme) => ({
   paperWrapper: {
@@ -77,7 +77,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    setSuccessToFalse: () => dispatch(actions.changeSuccess()),
+    setSuccessToFalse: () => dispatch(changeSuccess()),
   };
 };
 

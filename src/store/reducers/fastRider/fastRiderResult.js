@@ -1,5 +1,5 @@
-import { Types } from "../actions/FastRiderActions";
-import { updateObject } from "../../store/utility";
+import * as actionTypes from "../../actions/actionTypes";
+import { updateObject } from "../../utility";
 
 const initialState = {
   item: [],
@@ -45,15 +45,15 @@ const changeSuccess = (state, action) => {
 
 export default function fastRiderResultReducer(state = initialState, action) {
   switch (action.type) {
-    case Types.SUBMIT_RIDE_REQUEST:
+    case actionTypes.SUBMIT_RIDE_REQUEST:
       return submitRideRequest(state, action);
-    case Types.SUBMIT_RIDE_SUCCESS:
+    case actionTypes.SUBMIT_RIDE_SUCCESS:
       return submitRideSuccess(state, action);
-    case Types.SUBMIT_RIDE_FAILURE:
+    case actionTypes.SUBMIT_RIDE_FAILURE:
       return submitRideFailure(state, action);
-    case Types.SET_ERROR_MESSAGE:
+    case actionTypes.SET_ERROR_MESSAGE:
       return setErrorMessage(state, action);
-    case Types.CHANGE_SUCCESS_ON_REDIRECT:
+    case actionTypes.CHANGE_SUCCESS_ON_REDIRECT:
       return changeSuccess(state, action);
     default:
       return state;

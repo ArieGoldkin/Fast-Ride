@@ -1,18 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import * as actions from "../jungleComponents/actions/FastRiderActions";
-import { selectData } from "../jungleComponents/selectors/FastRiderSelectors";
-import { getSelectedItem, GetToken } from "../userComponents/userSelectors";
-import { checkPinNumber } from "../helpers/CheckPinCodeValidation";
+import { submitRideRequest, setErrorMessage } from "../../store/actions";
+import { selectData, getSelectedItem, GetToken } from "../../store/selectors";
+import { checkPinNumber } from "../../helpers/CheckPinCodeValidation";
 
 import { makeStyles } from "@material-ui/core/styles";
-import Input from "./Input";
+import Input from "../../components/FormInput/Input";
 import SubmitButton from "./SubmitButton";
-import { useForm } from "../hooks/form-hook";
-import { VALIDATOR_PIN_CODE } from "../hooks/InputValidators";
+import { useForm } from "../../hooks/form-hook";
+import { VALIDATOR_PIN_CODE } from "../../hooks/InputValidators";
 
-import { checkRideTime } from "../helpers/convertTime";
+import { checkRideTime } from "../../helpers/convertTime";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,9 +91,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onSubmitRide: ({ token, pinNumber, rideId }) =>
-      dispatch(actions.submitRideRequest({ token, pinNumber, rideId })),
-    setErrorMessage: ({ error }) =>
-      dispatch(actions.setErrorMessage({ error })),
+      dispatch(submitRideRequest({ token, pinNumber, rideId })),
+    setErrorMessage: ({ error }) => dispatch(setErrorMessage({ error })),
   };
 };
 

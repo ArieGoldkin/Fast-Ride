@@ -2,26 +2,7 @@ import React, { useReducer, useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { validate } from "../hooks/InputValidators";
-
-const inputReducer = (state, action) => {
-  switch (action.type) {
-    case "CHANGE":
-      return {
-        ...state,
-        value: action.val,
-        isValid: validate(action.val, action.validators),
-      };
-    case "TOUCH": {
-      return {
-        ...state,
-        isTouched: true,
-      };
-    }
-    default:
-      return state;
-  }
-};
+import { validate } from "../../hooks/InputValidators";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,6 +45,25 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
+const inputReducer = (state, action) => {
+  switch (action.type) {
+    case "CHANGE":
+      return {
+        ...state,
+        value: action.val,
+        isValid: validate(action.val, action.validators),
+      };
+    case "TOUCH": {
+      return {
+        ...state,
+        isTouched: true,
+      };
+    }
+    default:
+      return state;
+  }
+};
 
 const Input = (props) => {
   const classes = useStyles();

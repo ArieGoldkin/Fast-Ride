@@ -1,5 +1,5 @@
-import { Types } from "../actions/FastRiderActions";
-import { updateObject } from "../../store/utility";
+import * as actionTypes from "../../actions/actionTypes";
+import { updateObject } from "../../utility";
 
 const initialState = {
   items: [],
@@ -31,11 +31,11 @@ const getFastRiderDataFailure = (state, action) => {
 
 export default function fastRider(state = initialState, action) {
   switch (action.type) {
-    case Types.GET_FAST_RIDER_DATA_REQUEST:
+    case actionTypes.GET_FAST_RIDER_DATA_REQUEST:
       return getFastRiderDataRequest(state, action);
-    case Types.GET_FAST_RIDER_DATA_SUCCESS:
+    case actionTypes.GET_FAST_RIDER_DATA_SUCCESS:
       return getFastRiderDataSuccess(state, action);
-    case Types.GET_FAST_RIDER_DATA_FAILURE:
+    case actionTypes.GET_FAST_RIDER_DATA_FAILURE:
       return getFastRiderDataFailure(state, action);
     default:
       return state;

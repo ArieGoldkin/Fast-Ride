@@ -1,8 +1,8 @@
-import { takeLatest, call, put, fork } from "redux-saga/effects";
-import * as actions from "../actions/FastRiderActions";
-import * as api from "../../api/FastRiderAPI";
+import {  call, put } from "redux-saga/effects";
+import * as actions from "../../actions";
+import * as api from "../../../api/FastRiderAPI";
 
-function* getFastRiderData(action) {
+export function* getFastRiderData(action) {
   try {
     const responseData = yield call(api.getFastRiderData, {
       token: action.payload.token,
@@ -19,11 +19,7 @@ function* getFastRiderData(action) {
   }
 }
 
-function* watchGetFastRiderDataRequest() {
-  yield takeLatest(actions.Types.GET_FAST_RIDER_DATA_REQUEST, getFastRiderData);
-}
-
-function* submitRide(action) {
+export function* submitRide(action) {
   try {
     const responseData = yield call(api.submitRideData, {
       token: action.payload.token,
@@ -43,14 +39,3 @@ function* submitRide(action) {
     );
   }
 }
-
-function* watchSubmitRideRequest() {
-  yield takeLatest(actions.Types.SUBMIT_RIDE_REQUEST, submitRide);
-}
-
-const FastRiderSagas = [
-  fork(watchGetFastRiderDataRequest),
-  fork(watchSubmitRideRequest),
-];
-
-export default FastRiderSagas;
