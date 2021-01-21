@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import { Redirect } from "react-router-dom";
-import * as actions from "./actions/FastRiderActions";
-import { getResultData } from "./selectors/FastRiderSelectors";
+import * as actions from "../actions/FastRiderActions";
+import { getResultData } from "../selectors/FastRiderSelectors";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
-import InfoItem from "../infoComponent/InfoItem";
+import InfoItem from "../../infoComponent/InfoItem";
 import FastRiderSuccessItem from "./FastRiderSuccessItem";
-import vIcon from "../../images/ico-04.png";
+import vIcon from "../../../images/ico-04.png";
 
 const useStyles = makeStyles((theme) => ({
   paperWrapper: {

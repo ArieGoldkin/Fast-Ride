@@ -1,6 +1,6 @@
 import React from "react";
 
-import { convertToTime } from "../helpers/convertTime";
+import { convertToTime } from "../../helpers/convertTime";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 

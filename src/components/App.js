@@ -2,7 +2,7 @@ import React from "react";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import FastRideSuccess from "./jungleComponents/FastRiderSuccess";
+import FastRideSuccess from "./jungleComponents/components/FastRiderSuccess";
 import Main from "./Main";
 
 const App = () => {

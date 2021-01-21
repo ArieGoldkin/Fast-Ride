@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import InfoList from "./infoComponent/InfoList";
-import FastRider from "./jungleComponents/FastRider";
+import FastRider from "./jungleComponents";
 import Form from "./FormInput/Form";
 import ErrorModal from "./helpers/ErrorModal";
 
